@@ -47,7 +47,7 @@ $destinasi_bromo = [
     <nav class="navbar navbar-expand-lg py-3 sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-light fs-4" href="#">
-                <i class="bi bi-geo-alt-fill text-warning me-2"></i>Bromo<span class="text-warning">Ticket</span>[cite: 2]
+                <i class="bi bi-geo-alt-fill text-warning me-2"></i>Bromo<span class="text-warning">Ticket</span>
             </a>
         </div>
     </nav>
@@ -56,7 +56,7 @@ $destinasi_bromo = [
         <div class="row mb-5 text-center">
             <div class="col-12">
                 <h1 class="fw-bold mb-1">Custom Trip Bromo Explorer</h1>
-                <p class="text-light opacity-75">Rancang petualanganmu sendiri dengan destinasi favorit di kawasan Bromo.[cite: 2]</p>
+                <p class="text-light opacity-75">Rancang petualanganmu sendiri dengan destinasi favorit di kawasan Bromo.</p>
             </div>
         </div>
 
@@ -73,11 +73,11 @@ $destinasi_bromo = [
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
                                 <label class="form-label small opacity-75">Nama Lengkap</label>
-                                <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($_SESSION['nama'] ?? '') ?>" required>[cite: 2]
+                                <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($_SESSION['nama'] ?? '') ?>" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small opacity-75">WhatsApp</label>
-                                <input type="text" name="whatsapp" class="form-control" placeholder="08xxxx" required>[cite: 2]
+                                <input type="text" name="whatsapp" class="form-control" placeholder="08xxxx" required>
                             </div>
                         </div>
 
@@ -134,7 +134,7 @@ $destinasi_bromo = [
                         </div>
 
                         <button type="submit" name="submit_tiket" class="btn btn-bromo btn-lg w-100 rounded-pill py-3 fw-bold">
-                            Konfirmasi Pesanan Trip <i class="bi bi-arrow-right ms-2"></i>[cite: 2]
+                            Konfirmasi Pesanan Trip <i class="bi bi-arrow-right ms-2"></i>
                         </button>
                     </form>
                 </div>
@@ -146,17 +146,17 @@ $destinasi_bromo = [
                     <h6 class="fw-bold text-warning mb-3 text-start"><i class="bi bi-cloud-sun me-2"></i>Cuaca Bromo Hari Ini</h6>
                     <div id="weather-data">
                         <div class="weather-temp text-warning fw-bold fs-1">18&deg;</div>
-                        <h5 class="text-light">Berawan</h5>[cite: 2]
+                        <h5 class="text-light">Berawan</h5>
                         <div class="row mt-3 text-start small">
-                            <div class="col-6 opacity-75">Angin: 7.7 km/h</div>[cite: 2]
-                            <div class="col-6 opacity-75">Lembap: 74%</div>[cite: 2]
+                            <div class="col-6 opacity-75">Angin: 7.7 km/h</div>
+                            <div class="col-6 opacity-75">Lembap: 74%</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="glass-card overflow-hidden p-0">
                     <h6 class="fw-bold text-warning p-3 mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Lokasi Strategis</h6>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126432.06208573516!2d112.87979659357497!3d-7.930466465415273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd637aaab794a41%3A0xada40d36ecd2a5dd!2sGn.%20Bromo!5e0!3m2!1sid!2sid!4v1713500000000!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>[cite: 2]
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126432.06208573516!2d112.87979659357497!3d-7.930466465415273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd637aaab794a41%3A0xada40d36ecd2a5dd!2sGn.%20Bromo!5e0!3m2!1sid!2sid!4v1713500000000!5m2!1sid!2sid" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
