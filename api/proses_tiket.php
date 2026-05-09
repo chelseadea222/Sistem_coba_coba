@@ -1,36 +1,30 @@
 <?php
 require_once 'koneksi.php';
 
-$pesan_sukses = false;
-$pesan_error  = '';
-
 if (isset($_POST['submit_tiket'])) {
-    $nama         = trim($_POST['nama'] ?? '');
-    $whatsapp     = trim($_POST['whatsapp'] ?? '');
-    $tanggal      = $_POST['tanggal'] ?? '';
-    $titik_kumpul = $_POST['titik_kumpul'] ?? '';
-    $paket        = $_POST['paket'] ?? '';
-    $jumlah       = (int)($_POST['jumlah'] ?? 0);
+    $nama     = $_POST['nama'];
+    $whatsapp = $_POST['whatsapp'];
+    $kota     = $_POST['kota_asal'];
+    $wisata   = isset($_POST['wisata']) ? implode(", ", $_POST['wisata']) : "Tidak memilih";
+    $tanggal  = date('Y-m-d H:i:s');
 
-    if ($nama && $whatsapp && $tanggal && $titik_kumpul && $paket && $jumlah > 0) {
-        try {
-            $stmt = $pdo->prepare("
-                INSERT INTO tiket_harian (nama, whatsapp, tanggal, titik_kumpul, paket, jumlah, status)
-                VALUES (:nama, :whatsapp, :tanggal, :titik_kumpul, :paket, :jumlah, 'Pending')
-            ");
-            $stmt->execute([
-                ':nama'         => $nama,
-                ':whatsapp'     => $whatsapp,
-                ':tanggal'      => $tanggal,
-                ':titik_kumpul' => $titik_kumpul,
-                ':paket'        => $paket,
-                ':jumlah'       => $jumlah
-            ]);
-            $pesan_sukses = true;
-        } catch (PDOException $e) {
-            $pesan_error = "Gagal menyimpan data: " . $e->getMessage();
-        }
-    } else {
-        $pesan_error = "Semua field wajib diisi dengan benar.";
+    try {
+        // Query untuk menyimpan data rencana trip kustom
+        $sql = "INSERT INTO tiket_harian (nama, whatsapp, titik_kumpul, paket, tanggal, status) 
+                VALUES (:nama, :whatsapp, :kota, :paket, :tanggal, 'Pending')";
+        
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':nama' => $nama,
+            ':whatsapp' => $whatsapp,
+            ':kota' => $kota,
+            ':paket' => $wisata,
+            ':tanggal' => $tanggal
+        ]);
+
+        echo "<script>alert('Rencana Trip Berhasil Disimpan!'); window.location='../pesan_tiket.php';</script>";
+    } catch (PDOException $e) {
+        die("Error: " . $e->getMessage());
     }
 }
+?>

@@ -1,51 +1,66 @@
 <?php 
-require_once __DIR__ . '/koneksi.php';  // Menggunakan koneksi dari folder api
+session_start();
+// Perbaikan path koneksi: asumsikan koneksi.php ada di folder yang sama
+require_once __DIR__ . '/koneksi.php'; 
+
+// Data Destinasi Bromo
+$wisata_bromo = [
+    "Penanjakan 1", "Kawah Bromo", "Pasir Berbisik", "Bukit Teletubbies", 
+    "Pura Luhur Poten", "Bukit Kingkong", "Bukit Cinta", "Gunung Widodaren", 
+    "Seruni Point", "Padang Savana", "Air Terjun Madakaripura"
+];
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Rating & Ulasan Wisata</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating & Ulasan Bromo - BromoTrack</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background: #f4f4f4; padding: 20px; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f4f4; padding: 20px; color: #333; }
+        .container { max-width: 500px; margin: auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #E8621A; margin-bottom: 10px; }
+        p.subtitle { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 25px; }
         
-        /* CSS untuk Star Rating */
-        .rating-wrapper { display: flex; flex-direction: row-reverse; justify-content: center; margin-bottom: 20px; }
+        .rating-wrapper { display: flex; flex-direction: row-reverse; justify-content: center; margin-bottom: 25px; gap: 5px; }
         .rating-wrapper input { display: none; }
-        .rating-wrapper label { cursor: pointer; width: 40px; height: 40px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'); background-repeat: no-repeat; background-position: center; }
+        .rating-wrapper label { cursor: pointer; width: 45px; height: 45px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ccc"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'); background-repeat: no-repeat; background-position: center; transition: 0.2s; }
+        
         .rating-wrapper input:checked ~ label,
         .rating-wrapper label:hover,
-        .rating-wrapper label:hover ~ label { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="orange"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'); }
+        .rating-wrapper label:hover ~ label { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'); transform: scale(1.1); }
 
-        .form-group { margin-bottom: 15px; }
-        label.title { font-weight: bold; display: block; margin-bottom: 5px; }
-        input[type="text"], textarea, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #f39c12; border: none; color: white; font-weight: bold; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #e67e22; }
+        .form-group { margin-bottom: 20px; }
+        label.title { font-weight: bold; display: block; margin-bottom: 8px; font-size: 0.95em; }
+        input[type="text"], textarea, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; box-sizing: border-box; font-size: 14px; transition: 0.3s; }
+        
+        button { width: 100%; padding: 15px; background: #E8621A; border: none; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #d35400; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>Beri Rating Wisata</h2>
-    <form action="api/proses_rating.php" method="POST">
+    <p class="subtitle">Bagikan pengalaman seru Anda di Bromo!</p>
+
+    <form action="proses_rating.php" method="POST">
         <div class="form-group">
             <label class="title">Nama Pengunjung</label>
-            <input type="text" name="nama_user" required placeholder="Nama Anda">
+            <input type="text" name="nama_user" required placeholder="Contoh: Budi Santoso">
         </div>
 
         <div class="form-group">
-            <label class="title">Pilih Destinasi</label>
+            <label class="title">Pilih Destinasi Wisata</label>
             <select name="id_wisata" required>
-                <option value="1">Pantai Biru</option>
-                <option value="2">Gunung Pinus</option>
-                <option value="3">Hutan Pinus</option>
+                <option value="" disabled selected>-- Pilih Lokasi Wisata --</option>
+                <?php foreach ($wisata_bromo as $index => $nama): ?>
+                    <option value="<?= $index + 1 ?>"><?= $nama ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
-        <label class="title" style="text-align:center;">Rating Bintang</label>
+        <label class="title" style="text-align:center;">Seberapa puas Anda?</label>
         <div class="rating-wrapper">
             <input type="radio" id="star5" name="rating" value="5" required/><label for="star5"></label>
             <input type="radio" id="star4" name="rating" value="4"/><label for="star4"></label>
@@ -56,10 +71,13 @@ require_once __DIR__ . '/koneksi.php';  // Menggunakan koneksi dari folder api
 
         <div class="form-group">
             <label class="title">Ulasan / Komentar</label>
-            <textarea name="ulasan" rows="4" placeholder="Bagaimana pengalaman Anda?"></textarea>
+            <textarea name="ulasan" rows="4" placeholder="Ceritakan momen favorit Anda..."></textarea>
         </div>
 
-        <button type="submit" name="kirim_rating">KIRIM ULASAN</button>
+        <button type="submit" name="kirim_rating">KIRIM ULASAN SEKARANG</button>
+        <a href="landingpage.php" style="display: block; text-align: center; margin-top: 15px; color: #777; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s;" onmouseover="this.style.color='#E8621A'" onmouseout="this.style.color='#777'">
+        &larr; Kembali ke Beranda
+    </a>
     </form>
 </div>
 

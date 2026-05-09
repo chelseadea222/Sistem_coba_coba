@@ -1,24 +1,24 @@
 <?php
-include 'koneksi.php'; // Menggunakan koneksi database yang sudah ada di repo[cite: 1]
+require_once __DIR__ . '/koneksi.php';
 
 if (isset($_POST['submit_booking'])) {
-    // Sanitasi input
-    $nama      = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
-    $no_hp     = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
-    $tipe      = mysqli_real_escape_string($koneksi, $_POST['tipe_penginapan']);
-    $tgl       = mysqli_real_escape_string($koneksi, $_POST['tgl_checkin']);
-    $durasi    = mysqli_real_escape_string($koneksi, $_POST['durasi']);
-    $catatan   = mysqli_real_escape_string($koneksi, $_POST['catatan']);
-    $tgl_order = date("Y-m-d H:i:s");
+    $nama = mysqli_real_escape_string($koneksi, $_POST['nama_lengkap']);
+    $no_hp = mysqli_real_escape_string($koneksi, $_POST['no_hp']);
+    $tipe = $_POST['tipe_penginapan'];
+    $tgl_in = $_POST['tgl_checkin'];
+    $durasi = intval($_POST['durasi']);
+    $total = intval($_POST['total_bayar']);
 
-    // Query simpan data ke tabel booking_wisata
-    $query = "INSERT INTO booking_wisata (nama_lengkap, no_hp, tipe_penginapan, tgl_checkin, durasi, catatan, tgl_order) 
-              VALUES ('$nama', '$no_hp', '$tipe', '$tgl', '$durasi', '$catatan', '$tgl_order')";
+    $query = "INSERT INTO booking_penginapan (nama_lengkap, no_hp, tipe_penginapan, tgl_checkin, durasi, total_bayar) 
+              VALUES ('$nama', '$no_hp', '$tipe', '$tgl_in', '$durasi', '$total')";
 
     if (mysqli_query($koneksi, $query)) {
-        echo "<script>alert('Booking berhasil dikirim! Kami akan menghubungi Anda via WhatsApp.'); window.location='../booking_wisata.php';</script>";
+        echo "<script>
+                alert('Booking Berhasil!');
+                window.location.href = 'riwayat_booking.php';
+              </script>";
     } else {
-        echo "Gagal memproses booking: " . mysqli_error($koneksi);
+        echo "Error: " . mysqli_error($koneksi);
     }
 }
 ?>

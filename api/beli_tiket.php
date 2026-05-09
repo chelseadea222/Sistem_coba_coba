@@ -1,96 +1,108 @@
 <?php 
-require_once __DIR__ . '/koneksi.php';  // Menggunakan koneksi dari folder api
+require_once __DIR__ . '/koneksi.php'; 
+
+// Data Destinasi Bromo Lengkap sesuai daftar Anda
+$wisata_bromo = [
+    ["nama" => "Penanjakan 1", "harga" => 220000],
+    ["nama" => "Kawah Bromo", "harga" => 150000],
+    ["nama" => "Pasir Berbisik", "harga" => 75000],
+    ["nama" => "Bukit Teletubbies", "harga" => 50000],
+    ["nama" => "Pura Luhur Poten", "harga" => 50000],
+    ["nama" => "Bukit Kingkong", "harga" => 120000],
+    ["nama" => "Bukit Cinta", "harga" => 100000],
+    ["nama" => "Gunung Widodaren", "harga" => 100000],
+    ["nama" => "Seruni Point", "harga" => 150000],
+    ["nama" => "Padang Savana", "harga" => 50000],
+    ["nama" => "Air Terjun Madakaripura", "harga" => 45000]
+];
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan Tiket Online</title>
+    <title>Pemesanan Tiket Bromo - BromoTrack</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #e9ecef; margin: 0; padding: 20px; }
-        .ticket-container { max-width: 500px; margin: 40px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .ticket-header { background: #3498db; color: white; padding: 25px; text-align: center; }
-        .ticket-header h2 { margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        
-        .ticket-body { padding: 30px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 10px; display: flex; justify-content: center; min-height: 100vh; }
+        .ticket-container { width: 100%; max-width: 600px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin: 20px auto; }
+        .ticket-header { background: #E8621A; color: white; padding: 20px; text-align: center; }
+        .ticket-header h2 { margin: 0; font-size: 1.5rem; text-transform: uppercase; }
+        .ticket-body { padding: 25px; }
         .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
-        
-        input[type="text"], input[type="number"], select { 
-            width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; box-sizing: border-box; transition: 0.3s; 
-        }
-        input:focus, select:focus { border-color: #3498db; outline: none; }
-        
-        .price-display { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 5px solid #3498db; }
-        .price-display span { display: block; font-size: 0.9em; color: #777; }
-        .price-display strong { font-size: 1.2em; color: #2c3e50; }
-
-        button { 
-            width: 100%; background: #3498db; color: white; padding: 15px; border: none; border-radius: 8px; 
-            font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; 
-        }
-        button:hover { background: #2980b9; transform: translateY(-2px); }
-        
-        .ticket-footer { background: #f1f1f1; padding: 15px; text-align: center; font-size: 0.8em; color: #999; border-top: 2px dashed #ddd; }
+        label.main-label { display: block; margin-bottom: 10px; font-weight: bold; color: #333; border-bottom: 2px solid #E8621A; padding-bottom: 5px; }
+        .destinasi-list { max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; }
+        .check-item { display: flex; align-items: center; padding: 12px; border-bottom: 1px solid #eee; transition: 0.2s; cursor: pointer; }
+        .check-item:hover { background: #fff8f4; }
+        .check-item input { width: 20px; height: 20px; margin-right: 15px; accent-color: #E8621A; }
+        .check-item label { flex: 1; display: flex; justify-content: space-between; font-size: 0.95rem; cursor: pointer; }
+        .price-tag { font-weight: bold; color: #E8621A; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; font-size: 1rem; }
+        .price-display { background: #fff8f4; padding: 15px; border-radius: 12px; margin: 20px 0; border: 1px dashed #E8621A; text-align: center; }
+        .price-display strong { font-size: 1.8rem; color: #2c3e50; }
+        button { width: 100%; background: #E8621A; color: white; padding: 16px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #d15616; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
 <div class="ticket-container">
     <div class="ticket-header">
-        <h2>E-Ticket Wisata</h2>
+        <h2>E-TICKET BROMO</h2>
+        <p>Custom Trip Exploration</p>
     </div>
     
     <div class="ticket-body">
-        <form action="api/proses_beli_tiket.php" method="POST">
+        <form action="proses_beli_tiket.php" method="POST">
             <div class="form-group">
-                <label>Nama Pengunjung</label>
-                <input type="text" name="nama_pembeli" placeholder="Nama sesuai identitas" required>
+                <label class="main-label">Nama Pengunjung</label>
+                <input type="text" name="nama_pembeli" placeholder="Nama Lengkap sesuai KTP" required>
             </div>
 
             <div class="form-group">
-                <label>Pilih Destinasi</label>
-                <select name="id_wisata" id="wisata" required onchange="updatePrice()">
-                    <option value="">-- Pilih Lokasi --</option>
-                    <option value="1" data-harga="15000">Pantai Biru (Rp 15.000)</option>
-                    <option value="2" data-harga="25000">Gunung Pinus (Rp 25.000)</option>
-                    <option value="3" data-harga="10000">Hutan Kota (Rp 10.000)</option>
-                </select>
+                <label class="main-label">Pilih Destinasi Wisata</label>
+                <div class="destinasi-list">
+                    <?php foreach($wisata_bromo as $index => $item): ?>
+                    <div class="check-item">
+                        <input type="checkbox" name="id_wisata[]" value="<?= $index + 1 ?>" data-harga="<?= $item['harga'] ?>" id="w<?= $index ?>" onchange="updatePrice()">
+                        <label for="w<?= $index ?>">
+                            <?= $item['nama'] ?> 
+                            <span class="price-tag">Rp <?= number_format($item['harga'], 0, ',', '.') ?></span>
+                        </label>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
 
             <div class="form-group">
-                <label>Jumlah Tiket</label>
+                <label class="main-label">Jumlah Orang</label>
                 <input type="number" name="jumlah" id="jumlah" min="1" value="1" required oninput="updatePrice()">
             </div>
 
             <div class="price-display">
-                <span>Total Pembayaran:</span>
+                <span>Total Estimasi Bayar:</span>
                 <strong id="total_bayar">Rp 0</strong>
             </div>
 
-            <button type="submit" name="bayar_tiket">KONFIRMASI PEMBAYARAN</button>
+            <button type="submit" name="bayar_tiket">KONFIRMASI PEMESANAN</button>
         </form>
-    </div>
-
-    <div class="ticket-footer">
-        Harap tunjukkan e-ticket ini di pintu masuk wisata.
     </div>
 </div>
 
 <script>
 function updatePrice() {
-    const select = document.getElementById('wisata');
-    const jumlah = document.getElementById('jumlah').value;
+    const checkboxes = document.querySelectorAll('input[name="id_wisata[]"]:checked');
+    const jumlahOrang = document.getElementById('jumlah').value;
     const totalDisplay = document.getElementById('total_bayar');
     
-    const selectedOption = select.options[select.selectedIndex];
-    const harga = selectedOption.getAttribute('data-harga') || 0;
-    
-    const total = harga * jumlah;
-    totalDisplay.innerText = "Rp " + total.toLocaleString('id-ID');
-}
-</script>
+    let totalHargaPerOrang = 0;
+    checkboxes.forEach((cb) => {
+        totalHargaPerOrang += parseInt(cb.getAttribute('data-harga'));
+    });
 
+    const totalAkhir = totalHargaPerOrang * jumlahOrang;
+    totalDisplay.innerText = "Rp " + totalAkhir.toLocaleString('id-ID');
+}
+updatePrice();
+</script>
 </body>
 </html>

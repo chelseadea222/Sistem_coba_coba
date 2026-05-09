@@ -13,7 +13,7 @@ if (isset($_SESSION['role'])) {
         header('Location: tiket_harian.php');
         exit;
     } else {
-        header('Location: tiket.php');
+        header('Location: landingpage.php');
         exit;
     }
 }

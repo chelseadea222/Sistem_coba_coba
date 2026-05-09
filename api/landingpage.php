@@ -5,17 +5,17 @@
  */
 
 $wisata_bromo = [
-    ["nama" => "Penanjakan 1", "lokasi" => "Pasuruan", "img" => "https://images.unsplash.com/photo-1626074311145-2d186c3f3099?q=80&w=500", "desc" => "Titik tertinggi melihat matahari terbit dengan latar seluruh pegunungan Bromo."],
-    ["nama" => "Kawah Bromo", "lokasi" => "Area Bromo", "img" => "https://images.unsplash.com/photo-1596401057633-531032215d7e?q=80&w=500", "desc" => "Kawah aktif yang menakjubkan, bisa diakses dengan menaiki 250 anak tangga."],
-    ["nama" => "Pasir Berbisik", "lokasi" => "Kaldera Bromo", "img" => "https://images.unsplash.com/photo-1542451313-0949d0ca340c?q=80&w=500", "desc" => "Hamparan lautan pasir luas yang mengeluarkan suara desis saat tertiup angin."],
-    ["nama" => "Bukit Teletubbies", "lokasi" => "Savana Bromo", "img" => "https://images.unsplash.com/photo-1510711789248-087061cda288?q=80&w=500", "desc" => "Bukit-bukit hijau yang cantik dan luas, mirip dengan pemandangan di film anak-anak."],
-    ["nama" => "Pura Luhur Poten", "lokasi" => "Lautan Pasir", "img" => "https://images.unsplash.com/photo-1571474240337-142f1b4020a6?q=80&w=500", "desc" => "Pura sakral tempat ibadah suku Tengger yang berdiri kokoh di tengah hamparan pasir."],
-    ["nama" => "Bukit Kingkong", "lokasi" => "Pasuruan", "img" => "https://images.unsplash.com/photo-1614264623707-164746f1406c?q=80&w=500", "desc" => "Spot sunrise alternatif yang menawarkan sudut pandang tebing yang unik dan gagah."],
-    ["nama" => "Bukit Cinta", "lokasi" => "Pasuruan", "img" => "https://images.unsplash.com/photo-1611624838421-4f1f584e2621?q=80&w=500", "desc" => "Sering disebut Love Hill, tempat romantis untuk menikmati pemandangan kaldera."],
-    ["nama" => "Gunung Widodaren", "lokasi" => "Dekat Kawah", "img" => "https://images.unsplash.com/photo-1612711812852-78be165a2d6f?q=80&w=500", "desc" => "Tebing batu yang megah, sering menjadi lokasi favorit untuk berfoto bersama Jeep."],
-    ["nama" => "Seruni Point", "lokasi" => "Probolinggo", "img" => "https://images.unsplash.com/photo-1596401057633-531032215d7e?q=80&w=500", "desc" => "Puncak penanjakan ke-2 yang bisa diakses melalui tangga dari arah Probolinggo."],
-    ["nama" => "Padang Savana", "lokasi" => "Selatan Bromo", "img" => "https://images.unsplash.com/photo-1510711789248-087061cda288?q=80&w=500", "desc" => "Padang rumput yang tenang dan hijau, memberikan sisi lembut dari alam Bromo."],
-    ["nama" => "B-29 Argosari", "lokasi" => "Lumajang", "img" => "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=500", "desc" => "Dikenal sebagai negeri di atas awan, menawarkan pemandangan Bromo dari sisi timur."]
+    ["nama" => "Penanjakan 1", "lokasi" => "Pasuruan", "img" => "https://images.openai.com/static-rsc-4/y5ZEBJVzWblmPNXKXzXCpOiEMvwshGNwleMYOGKBXlCpmtz6tXKxPdIj1LQIdT37TKpqjUegA_j5IolwQ09h9tBcy2kNvwpX0rTTE7WOLBhBy5b0s_gnN3DwlN_P-8ZPu9nCzUSPXcA4jWWkLu6NeYzdnTa3oOq1vzzPem3ouQM_kTtiddDSUO8fanE5QXdV?purpose=fullsize", "desc" => "Titik tertinggi melihat matahari terbit dengan latar seluruh pegunungan Bromo."],
+    ["nama" => "Kawah Bromo", "lokasi" => "Area Bromo", "img" => "https://images.openai.com/static-rsc-4/iXSoR4MlFMZ804-QF98Ce3r8YF7soR1xrdtomH9NLmRiTjjyfnU60Gahdold4FKBt-ZDlJJpMTZwqIdOEsLW8Hh6qkORumCa-GHVTI_Q6BZte--AUVeHtv1T7DPzFInL1v2gReYORAeh3uG5L2C2T9_DBJTQFyJ2-vIF7YNwWkJQXSGh64pnj7AgNKxzhO5S?purpose=fullsize", "desc" => "Kawah aktif yang menakjubkan, bisa diakses dengan menaiki 250 anak tangga."],
+    ["nama" => "Pasir Berbisik", "lokasi" => "Kaldera Bromo", "img" => "https://images.openai.com/static-rsc-4/y3sZVrLT76xpXkh8xnp5Tyadjv4R6I6SuOFvHOaweNcYDqRKu6gJ1nubKxNnqioNetNqag0TzVUMJA_h8aClUhgFPHMaHetCNDk2LduPdoPggpT0FfIwBeA8ToJcBBdVtSABgp7FX04OCu4TksvoGjtlBLzzHajBTQMuxPkJUiKQjOUI6hb9t5Fl9PxeCol-?purpose=fullsize", "desc" => "Hamparan lautan pasir luas yang mengeluarkan suara desis saat tertiup angin."],
+    ["nama" => "Bukit Teletubbies", "lokasi" => "Savana Bromo", "img" => "https://images.openai.com/static-rsc-4/jEJa1xbLo-r43fcp2MTmZ7fljKkZ5LbOneKf8v1yvBA95eqMCInNupKZnDchwHs_8hVcOtkpwOGF0LuXQ86b5iPdeisZp3l4WhKuKEZJzSSlMQCKkwQ_5ddDnqb1E6SsSE5q8KMQ1vea9ualrVOfuypJZ36IWvMjR3Tuy9r1es7wZCxssJ7DVnbEVidTj7KR?purpose=fullsize", "desc" => "Bukit-bukit hijau yang cantik dan luas, mirip dengan pemandangan di film anak-anak."],
+    ["nama" => "Pura Luhur Poten", "lokasi" => "Lautan Pasir", "img" => "https://images.openai.com/static-rsc-4/oPQzYdndzpHq6sM9gp3QkKgKL7h16DgAfWDFZiLZeE7Hz8fbZaDNx-abRzby7LW5nJewTnbRxZ6b5myfdAngRar0FLGrjsfmscYOtLtfIpySdqifw7HsD0tiKsj8tWVX3cQLv58QDCI2anNocJvk7g2u1IVMd1FT2KUmvaWc5gK7g9C7WrU8Xr4R6XaIWOmW?purpose=fullsize", "desc" => "Pura sakral tempat ibadah suku Tengger yang berdiri kokoh di tengah hamparan pasir."],
+    ["nama" => "Bukit Kingkong", "lokasi" => "Pasuruan", "img" => "https://i.pinimg.com/736x/2f/28/5a/2f285a8b97f054c551380ff67639bc00.jpg", "desc" => "Spot sunrise alternatif yang menawarkan sudut pandang tebing yang unik dan gagah."],
+    ["nama" => "Bukit Cinta", "lokasi" => "Pasuruan", "img" => "https://images.openai.com/static-rsc-4/qp_xJF5WlhV9TUHR8426ntRoQy_dFJsRRzR3AnPk52Cc4i_7k3qEgyolSAqUd0PcVUb8R_jObGd8jFXwNOlFe0tK1p7HSmiWnQdeaoCTFqw3uqqqTW2sCqDA5kP5elS83DAfGRMXQVdGvd5mrps-VBPHW0aOhKH5ahGS8Ly9Uam2vJSh82K0mINCaDIv_gGB?purpose=fullsize", "desc" => "Sering disebut Love Hill, tempat romantis untuk menikmati pemandangan kaldera."],
+    ["nama" => "Gunung Widodaren", "lokasi" => "Dekat Kawah", "img" => "https://i.pinimg.com/736x/c5/00/67/c500670b992fd00d635ddde1cbae3ca3.jpg", "desc" => "Tebing batu yang megah, sering menjadi lokasi favorit untuk berfoto bersama Jeep."],
+    ["nama" => "Seruni Point", "lokasi" => "Probolinggo", "img" => "https://images.openai.com/static-rsc-4/DSETrAcn2a4qJMXdohJcDf2XOLywDL4q50x-mcjczVEdDxJoKbYI3Alo_PqDBhMpNbKIDVrXnUJYjBbr3TffmpHgIcpEFnVZ_ATGcan8XHcvCSdZfJ2I2Y6EsJCYOxqX6k7kn3I4Be7GqyzoeKfWG_p87H3qCHRgGFMn-p0D6yfQvDoXE3OBhxke-j41fJof?purpose=fullsize", "desc" => "Puncak penanjakan ke-2 yang bisa diakses melalui tangga dari arah Probolinggo."],
+    ["nama" => "Padang Savana", "lokasi" => "Selatan Bromo", "img" => "https://images.openai.com/static-rsc-4/lA_CXuwWdaOLtCVUD4LLJN3JBguOuOT2SbtxQ7sn1AklCrru34lTrB3FXHYgwkMlXk3pcNFUEACAdS02pj_nXpLeIDrOwXegaeCo0WglgTjGrd2eQ9M0NE1YaDT8E9Hx-RcZjhX5NOEYDOblikhLpQsGHq5FfirgU5qmNf95oClGK27ZI3MnWJfggS-rRF-F?purpose=fullsize", "desc" => "Padang rumput yang tenang dan hijau, memberikan sisi lembut dari alam Bromo."],
+    ["nama" => "Air Terjun Madakaripura", "lokasi" => "Lumajang", "img" => "https://images.openai.com/static-rsc-4/YPErXL49e1c41G_Pdvtgl17K8caVCpabI0PqiDujA2BsLy6VTDDrkbhFSlspCfDKByIrFN2qNRsg28AOx077UNoopVckJm_ifbww7IRgePIfVKokAmDOhV3hn6bhxqORBdoEHsGRZQqxK9ulhWdqtjbKL38j6UUjZkLATpyuVZxWW1t7fGj6tynlzR_HQ6-R?purpose=fullsize", "desc" => "Air terjun terkenal dekat kawasan Bromo.."]
 ];
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ $wisata_bromo = [
         .nav-links a:hover { color: #e67e22; }
 
         .hero { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=1200') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.openai.com/static-rsc-4/jl_TPCJUil4yv-diw58wSCB5b8e2YVzmHeoJRC4ZtydxdgzM0HafI7SMDiMqQXprKeZ6jSCBjVzObToLDdbWMDDbeWgf11a9yexfcCXlL_CXF_Ir3ryI__SmShrBTl8zZtIM1tcR56jOlrEPD5_jk9Eee5aSQ1gw9rw5UEIYb3x5A4FXEsNNRRHDC8BN8g7k?purpose=fullsize') no-repeat center center/cover;
             height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 0 20px;
         }
         .hero h1 { font-size: 2.8rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
@@ -104,13 +104,16 @@ $wisata_bromo = [
                 <a href="#destinasi"><i class="bi bi-map"></i> Destinasi</a>
                 <a href="rating.php"><i class="bi bi-star"></i> Ulasan</a>
                 <a href="laporan_keluhan.php"><i class="bi bi-chat-dots"></i> Bantuan</a>
+                <a href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?')" style="color: #e74c3c; font-weight: bold;">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
             </div>
         </div>
     </nav>
 
     <header class="hero">
-        <h1>Jelajahi 11 Wisata Ikonik Bromo</h1>
-        <p>Nikmati kemudahan eksplorasi keajaiban alam Taman Nasional Bromo Tengger Semeru dalam satu layanan terintegrasi.</p>
+        <h1>Eksplorasi Bromo Tanpa Batas, Trip Kustom Sesuai Gayamu</h1>
+        <p>Tak perlu bingung rute dan biaya. Pilih destinasi favoritmu, cek logistik perjalanan, dan biarkan kami yang mengurus sisanya untuk petualangan yang tak terlupakan.</p>
         <div class="hero-buttons">
             <a href="Beli_tiket.php" class="btn-main btn-blue"><i class="bi bi-ticket-perforated"></i> Pesan Tiket Wisata</a>
             <a href="booking.php" class="btn-main btn-orange"><i class="bi bi-car-front"></i> Booking Penginapan</a>
@@ -120,7 +123,7 @@ $wisata_bromo = [
 
     <div class="container" id="destinasi">
         <div class="section-title">
-            <h2>Destinasi Wisata Unggulan</h2>
+            <h2>Destinasi Wisata Unggulan Bromo</h2>
             <p>Geser ke samping untuk melihat detail 11 lokasi memukau</p>
             <hr>
         </div>
