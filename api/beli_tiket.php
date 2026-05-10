@@ -178,7 +178,7 @@ if (isset($_POST['bayar_tiket'])) {
             </div>
 
             <p style="font-size: 0.8rem; color: #7f8c8d;">Status otomatis berubah setelah bayar</p>
-            <a href="index.php" style="display:block; background:var(--primary); color:white; padding:15px; text-decoration:none; border-radius:12px; font-weight:bold;">SAYA SUDAH BAYAR</a>
+            <a href="konfirmasi_pembayaran.php" style="display:block; background:var(--primary); color:white; padding:15px; text-decoration:none; border-radius:12px; font-weight:bold;">SAYA SUDAH BAYAR</a>
         </div>
     </div>
 </div>

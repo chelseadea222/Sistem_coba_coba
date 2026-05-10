@@ -53,16 +53,15 @@ $result_ulasan = mysqli_query($koneksi, "SELECT * FROM ulasan_wisata ORDER BY ta
         .card-stat { border: none; border-radius: 12px; color: white; position: relative; overflow: hidden; }
         .stat-icon { font-size: 3rem; opacity: 0.2; position: absolute; right: 15px; bottom: 5px; }
         
-        .scroll-container { max-height: 350px; overflow-y: auto; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+        .scroll-container { max-height: 400px; overflow-y: auto; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
         .card-table { border: none; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 40px; background: white; }
-        .card-header { background: white !important; border-bottom: 1px solid #edf2f7; padding: 18px 25px; font-weight: 700; }
+        .card-header { background: white !important; border-bottom: 1px solid #edf2f7; padding: 18px 25px; font-weight: 700; position: sticky; top: 0; z-index: 10; }
+        
         .table thead th { background: #f8fafc; color: #718096; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: 0; }
         .star-rating { color: #f6ad55; }
 
-        /* Style khusus untuk tombol print */
         .btn-print { font-size: 0.8rem; font-weight: 600; padding: 4px 12px; }
 
-        /* Pengaturan CSS untuk hasil Print */
         @media print {
             nav, .logout-btn, .btn-print, .btn-sm, .card-stat, canvas { display: none !important; }
             .main-content { padding: 0; margin: 0; width: 100%; }
@@ -129,14 +128,47 @@ $result_ulasan = mysqli_query($koneksi, "SELECT * FROM ulasan_wisata ORDER BY ta
             </div>
             <div class="scroll-container">
                 <table class="table table-hover align-middle mb-0">
-                    <thead><tr><th>Pembeli</th><th>Destinasi</th><th>Tanggal</th><th>Status</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Pembeli</th>
+                            <th>Status</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <?php while($row = mysqli_fetch_assoc($result_tiket)): ?>
                         <tr>
-                            <td class="fw-bold"><?= htmlspecialchars($row['nama_pembeli']) ?></td>
-                            <td><small><?= htmlspecialchars($row['destinasi']) ?></small></td>
-                            <td><?= date('d/m/Y', strtotime($row['tanggal_pesan'])) ?></td>
-                            <td><span class="badge bg-success-subtle text-success">Lunas</span></td>
+                            <td><?= htmlspecialchars($row['nama_pembeli']) ?></td>
+                            <td>
+                                <?php if($row['status'] == 'Lunas'): ?>
+                                    <span class="badge bg-success-subtle text-success">Lunas</span>
+                                <?php else: ?>
+                                    <span class="badge bg-warning-subtle text-dark"><?= $row['status'] ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if ($row['bukti_pembayaran']): ?>
+                                    <a href="uploads/<?= $row['bukti_pembayaran'] ?>" target="_blank" class="btn btn-sm btn-outline-info">
+                                        <i class="bi bi-image"></i> Lihat Bukti
+                                    </a>
+                                <?php else: ?>
+                                    <span class="text-danger small"><i class="bi bi-x-circle"></i> Belum Upload</span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if ($row['status'] == 'Diproses'): ?>
+                                    <a href="verifikasi_tiket.php?id=<?= $row['id_transaksi'] ?>" 
+                                       class="btn btn-sm btn-success" 
+                                       onclick="return confirm('Konfirmasi pelunasan tiket ini?')">
+                                       <i class="bi bi-check-circle"></i> Konfirmasi Lunas
+                                    </a>
+                                <?php elseif($row['status'] == 'Lunas'): ?>
+                                    <span class="text-muted small"><i class="bi bi-patch-check-fill text-primary"></i> Terverifikasi</span>
+                                <?php else: ?>
+                                    <span class="text-muted small">-</span>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                         <?php endwhile; ?>
                     </tbody>
