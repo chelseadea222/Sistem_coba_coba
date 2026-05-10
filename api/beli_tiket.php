@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/koneksi.php'; 
+require_once __DIR__ . '/koneksi.php';
 
 // Data Destinasi Bromo Lengkap
 $wisata_bromo = [
@@ -43,7 +43,6 @@ if (isset($_POST['bayar_tiket'])) {
         $id_transaksi = "TRX-" . strtoupper(substr(md5(time()), 0, 8));
         $destinasi_str = implode(", ", $destinasi_pilihan);
 
-        // Simpan ke Database (tambahkan kolom metode_pembayaran di tabel Anda jika diperlukan)
         $query = "INSERT INTO pemesanan_tiket (id_transaksi, nama_pembeli, destinasi, jumlah_orang, total_bayar, status) 
                   VALUES ('$id_transaksi', '$nama_pembeli', '$destinasi_str', '$jumlah_orang', '$final_total', 'Menunggu Pembayaran')";
         
@@ -58,127 +57,236 @@ if (isset($_POST['bayar_tiket'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pemesanan & Pembayaran - BromoTrack</title>
+    <title>Pemesanan Tiket - BromoTrack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #E8621A; --dark: #2c3e50; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 10px; }
-        .ticket-container { width: 100%; max-width: 600px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin: 20px auto; }
-        .ticket-header { background: var(--primary); color: white; padding: 20px; text-align: center; }
-        .ticket-body { padding: 25px; }
-        .form-group { margin-bottom: 20px; }
-        label.main-label { display: block; margin-bottom: 10px; font-weight: bold; color: #333; border-bottom: 2px solid var(--primary); padding-bottom: 5px; }
-        
-        /* List Style */
-        .scroll-list { max-height: 200px; overflow-y: auto; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; padding: 5px; }
-        .check-item, .method-item { display: flex; align-items: center; padding: 12px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s; }
-        .check-item:hover, .method-item:hover { background: #fff8f4; }
-        
-        /* Input Style */
-        input[type="text"], input[type="number"], select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; }
-        .price-display { background: #fff8f4; padding: 15px; border-radius: 12px; margin: 20px 0; border: 1px dashed var(--primary); text-align: center; }
-        .price-display strong { font-size: 1.8rem; color: var(--dark); }
-        button { width: 100%; background: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        :root { 
+            --accent: #E8621A; 
+            --glass-dark: rgba(20, 20, 20, 0.7);
+        }
 
-        /* MODAL PEMBAYARAN */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: <?= $show_payment ? 'flex' : 'none' ?>; justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-        .pay-card { background: white; width: 100%; max-width: 450px; border-radius: 20px; overflow: hidden; }
-        .pay-header { background: var(--dark); color: white; padding: 20px; text-align: center; }
-        .pay-body { padding: 30px; text-align: center; }
-        .amount-box { font-size: 2rem; color: var(--primary); font-weight: bold; margin: 15px 0; }
-        .bank-info { background: #f8f9fa; border: 1px solid #eee; padding: 15px; border-radius: 12px; text-align: left; margin-bottom: 15px; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; 
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .glass-card { 
+            background: var(--glass-dark); 
+            backdrop-filter: blur(15px); 
+            border-radius: 24px; 
+            padding: 35px; 
+            border: 1px solid rgba(255,255,255,0.15); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .label-custom { 
+            color: var(--accent); 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .input-custom {
+            background: rgba(255,255,255,0.1) !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
+            color: white !important;
+            border-radius: 12px;
+            padding: 12px 18px;
+        }
+
+        /* Perbaikan visibilitas teks dropdown */
+        .input-custom option {
+            color: #333; 
+            background-color: #fff; 
+        }
+
+        .input-custom:focus {
+            border-color: var(--accent) !important;
+            box-shadow: 0 0 10px rgba(232, 98, 26, 0.3) !important;
+        }
+
+        .scroll-list { 
+            max-height: 250px; 
+            overflow-y: auto; 
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 15px; 
+            padding: 10px; 
+        }
+        
+        .check-item { 
+            display: flex; 
+            align-items: center; 
+            padding: 12px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .check-item:hover { background: rgba(232, 98, 26, 0.1); }
+        .check-item input { accent-color: var(--accent); width: 18px; height: 18px; }
+        
+        .destinasi-label { 
+            flex: 1; 
+            display: flex; 
+            justify-content: space-between; 
+            margin-left: 12px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .price-text { color: var(--accent); font-weight: 700; }
+
+        .btn-pay { 
+            background-color: var(--accent); 
+            color: white; 
+            border: none; 
+            font-weight: 700; 
+            padding: 15px; 
+            border-radius: 12px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-pay:hover { background-color: #d15616; transform: translateY(-2px); }
+
+        .total-box {
+            background: rgba(232, 98, 26, 0.1);
+            border: 1px dashed var(--accent);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .modal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            display: <?= $show_payment ? 'flex' : 'none' ?>; 
+            justify-content: center; align-items: center; 
+            z-index: 1000; padding: 20px;
+        }
+        .pay-card { 
+            background: #1a1a1a; 
+            width: 100%; max-width: 450px; 
+            border-radius: 24px; border: 1px solid var(--accent);
+            overflow: hidden; 
+            animation: zoomIn 0.3s ease-out;
+        }
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .pay-header { background: var(--accent); padding: 20px; text-align: center; }
+        .pay-body { padding: 35px; text-align: center; }
+        .amount-display { font-size: 2.5rem; font-weight: 800; color: white; margin: 10px 0; }
+        .bank-details { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: left; margin: 20px 0; }
+        .btn-done { display: block; background: white; color: black; padding: 15px; text-decoration: none; border-radius: 12px; font-weight: 800; margin-top: 20px; text-align: center; }
+        
+        .scroll-list::-webkit-scrollbar { width: 6px; }
+        .scroll-list::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-<div class="ticket-container">
-    <div class="ticket-header">
-        <h2 style="margin:0">BROMOTRACK CHECKOUT</h2>
-    </div>
-    
-    <div class="ticket-body">
-        <form action="" method="POST">
-            <div class="form-group">
-                <label class="main-label"><i class="bi bi-person"></i> Nama Pengunjung</label>
-                <input type="text" name="nama_pembeli" placeholder="Nama sesuai KTP" required>
-            </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="glass-card">
+                <div class="text-center mb-5">
+                    <i class="bi bi-ticket-perforated fs-1 text-warning"></i>
+                    <h2 class="fw-bold mt-2">Pesan Tiket Wisata</h2>
+                    <p class="opacity-75 small">Pilih destinasi favoritmu dan dapatkan E-Ticket instan.</p>
+                </div>
 
-            <div class="form-group">
-                <label class="main-label"><i class="bi bi-geo-alt"></i> Pilih Destinasi</label>
-                <div class="scroll-list">
-                    <?php foreach($wisata_bromo as $index => $item): ?>
-                    <div class="check-item">
-                        <input type="checkbox" name="id_wisata[]" value="<?= $index + 1 ?>" data-harga="<?= $item['harga'] ?>" id="w<?= $index ?>" onchange="updatePrice()">
-                        <label for="w<?= $index ?>" style="flex:1; display:flex; justify-content:space-between; margin-left:10px; cursor:pointer;">
-                            <?= $item['nama'] ?> <strong>Rp <?= number_format($item['harga'], 0, ',', '.') ?></strong>
-                        </label>
+                <form action="" method="POST">
+                    <div class="mb-4">
+                        <label class="label-custom"><i class="bi bi-person me-2"></i>Nama Pengunjung</label>
+                        <input type="text" name="nama_pembeli" class="form-control input-custom" placeholder="Nama Lengkap Sesuai KTP" required>
                     </div>
-                    <?php endforeach; ?>
+
+                    <div class="mb-4">
+                        <label class="label-custom"><i class="bi bi-geo-alt me-2"></i>Pilih Destinasi</label>
+                        <div class="scroll-list">
+                            <?php foreach($wisata_bromo as $index => $item): ?>
+                            <div class="check-item">
+                                <input type="checkbox" name="id_wisata[]" value="<?= $index + 1 ?>" data-harga="<?= $item['harga'] ?>" id="w<?= $index ?>" onchange="updatePrice()">
+                                <label for="w<?= $index ?>" class="destinasi-label">
+                                    <span><?= $item['nama'] ?></span>
+                                    <span class="price-text">Rp<?= number_format($item['harga'], 0, ',', '.') ?></span>
+                                </label>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="label-custom"><i class="bi bi-people me-2"></i>Jumlah Orang</label>
+                            <input type="number" name="jumlah" id="jumlah" min="1" value="1" class="form-control input-custom" required oninput="updatePrice()">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="label-custom"><i class="bi bi-wallet2 me-2"></i>Pembayaran</label>
+                            <select name="metode_pembayaran" class="form-select input-custom" required>
+                                <option value="" disabled selected>Pilih Metode</option>
+                                <option value="DANA">DANA</option>
+                                <option value="OVO">OVO</option>
+                                <option value="BCA">BCA Virtual Account</option>
+                                <option value="BNI">BNI Virtual Account</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="total-box">
+                        <span class="small opacity-75">Total Bayar:</span><br>
+                        <h3 class="fw-bold mb-0" id="total_bayar_display" style="color: var(--accent);">Rp 0</h3>
+                    </div>
+
+                    <button type="submit" name="bayar_tiket" class="btn-pay">Konfirmasi Pemesanan <i class="bi bi-arrow-right ms-2"></i></button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <a href="landingpage.php" class="text-white-50 text-decoration-none small"><i class="bi bi-house me-1"></i> Kembali ke Beranda</a>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="main-label"><i class="bi bi-people"></i> Jumlah Orang</label>
-                <input type="number" name="jumlah" id="jumlah" min="1" value="1" required oninput="updatePrice()">
-            </div>
-
-            <div class="form-group">
-                <label class="main-label"><i class="bi bi-wallet2"></i> Metode Pembayaran</label>
-                <select name="metode_pembayaran" required>
-                    <option value="" disabled selected>Pilih Metode...</option>
-                    <optgroup label="E-Wallet">
-                        <option value="DANA">DANA</option>
-                        <option value="OVO">OVO / ShopeePay</option>
-                        <option value="GOPAY">GoPay</option>
-                    </optgroup>
-                    <optgroup label="Transfer Bank (VA)">
-                        <option value="BCA">BCA Virtual Account</option>
-                        <option value="MANDIRI">Mandiri Virtual Account</option>
-                        <option value="BNI">BNI Virtual Account</option>
-                    </optgroup>
-                    <optgroup label="Kartu Debit/Kredit">
-                        <option value="DEBIT">Kartu Debit Online (Visa/Mastercard)</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <div class="price-display">
-                <span>Total Bayar:</span><br>
-                <strong id="total_bayar_display">Rp 0</strong>
-            </div>
-
-            <button type="submit" name="bayar_tiket">BAYAR SEKARANG</button>
-        </form>
+        </div>
     </div>
 </div>
 
 <div class="modal-overlay">
     <div class="pay-card">
         <div class="pay-header">
-            <h3 style="margin:0">SELESAIKAN PEMBAYARAN</h3>
-            <small>ID: <?= $id_transaksi ?></small>
+            <h4 class="fw-bold mb-0 text-white">Selesaikan Pembayaran</h4>
+            <small class="text-white-50">ID: <?= $id_transaksi ?></small>
         </div>
         <div class="pay-body">
-            <p>Silakan bayar menggunakan <strong><?= $metode_dipilih ?></strong>:</p>
-            <div class="amount-box">Rp <?= number_format($final_total, 0, ',', '.') ?></div>
+            <p class="text-white-50 small mb-0">Total transfer (<?= $metode_dipilih ?>):</p>
+            <div class="amount-display">Rp <?= number_format($final_total, 0, ',', '.') ?></div>
             
-            <div class="bank-info">
+            <div class="bank-details text-white">
                 <?php if(in_array($metode_dipilih, ['DANA', 'OVO', 'GOPAY'])): ?>
-                    <strong>Nomor E-Wallet:</strong><br>
-                    <span style="font-size:1.2rem; color:var(--primary)">0812-3456-7890</span><br>
-                    <small>A/N BROMOTRACK INDONESIA</small>
-                <?php elseif($metode_dipilih == 'DEBIT'): ?>
-                    <strong>Link Pembayaran Kartu:</strong><br>
-                    <a href="#">Klik untuk masukkan detail kartu</a>
+                    <label class="label-custom">Nomor E-Wallet:</label>
+                    <h5 class="fw-bold">0812-3456-7890</h5>
                 <?php else: ?>
-                    <strong>Nomor Virtual Account:</strong><br>
-                    <span style="font-size:1.2rem; color:var(--primary)">8801 0812 3456 7890</span><br>
-                    <small>Berlaku selama 24 jam</small>
+                    <label class="label-custom">Virtual Account:</label>
+                    <h5 class="fw-bold">8801 0812 3456 7890</h5>
                 <?php endif; ?>
+                <p class="small text-white-50 mt-2 mb-0">A/N BROMOTRACK INDONESIA</p>
             </div>
 
-            <p style="font-size: 0.8rem; color: #7f8c8d;">Status otomatis berubah setelah bayar</p>
-            <a href="konfirmasi_pembayaran.php" style="display:block; background:var(--primary); color:white; padding:15px; text-decoration:none; border-radius:12px; font-weight:bold;">SAYA SUDAH BAYAR</a>
+            <p class="small text-white-50">Status akan diverifikasi manual setelah Anda mengunggah bukti bayar.</p>
+            <a href="konfirmasi_pembayaran.php?id=<?= $id_transaksi ?>" class="btn-done">SAYA SUDAH BAYAR</a>
         </div>
     </div>
 </div>
@@ -186,7 +294,7 @@ if (isset($_POST['bayar_tiket'])) {
 <script>
 function updatePrice() {
     const checkboxes = document.querySelectorAll('input[name="id_wisata[]"]:checked');
-    const jumlahOrang = document.getElementById('jumlah').value;
+    const jumlahOrang = document.getElementById('jumlah').value || 1;
     const totalDisplay = document.getElementById('total_bayar_display');
     
     let totalHargaPerOrang = 0;
