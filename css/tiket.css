@@ -1,49 +1,105 @@
+/* ROOT VARIABLES */
+:root { 
+    --accent: #E8621A; 
+    --dark-bg: #0f0c08;
+    --glass: rgba(255, 255, 255, 0.07);
+}
+
+/* GLOBAL STYLES */
 body { 
-            font-family: 'Poppins', sans-serif; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
-                        url("https://upload.wikimedia.org/wikipedia/commons/8/8e/Bromo-Semeru-Batok-Widodaren.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            color: #fff;
-        }
-        .navbar {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .glass-card {
-            background: rgba(20,20,20,0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5);
-            padding: 25px;
-        }
-        .form-control, .form-select {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: #fff !important;
-        }
-        .form-control:focus, .form-select:focus {
-            background: rgba(255,255,255,0.2);
-            border-color: #f39c12;
-            box-shadow: 0 0 10px rgba(243,156,18,0.5);
-        }
-        .form-control::placeholder { color: rgba(255,255,255,0.6); }
-        option { background: #333; color: #fff; }
-        .btn-bromo {
-            background: #f39c12;
-            color: #fff;
-            border: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .btn-bromo:hover { background: #e67e22; transform: translateY(-3px); color: #fff; }
-        .weather-temp { font-size: 4rem; font-weight: 700; line-height: 1; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); color: #f39c12; }
-        .map-container { overflow: hidden; padding-bottom: 56.25%; position: relative; height: 0; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); }
-        .map-container iframe { left: 0; top: 0; height: 100%; width: 100%; position: absolute; }
-        .fade-in { animation: fadeIn 0.8s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    font-family: 'Poppins', sans-serif; 
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=1200');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white; 
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* COMPONENTS */
+.glass-card { 
+    background: var(--glass); 
+    backdrop-filter: blur(15px); 
+    border-radius: 24px; 
+    padding: 40px; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.input-custom {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: white !important;
+    border-radius: 12px;
+    padding: 12px 18px;
+}
+
+.input-custom:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 0.25rem rgba(232, 98, 26, 0.25) !important;
+}
+
+.btn-analisis { 
+    background-color: var(--accent); 
+    color: white; 
+    border: none; 
+    font-weight: 700; 
+    padding: 14px; 
+    border-radius: 12px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-analisis:hover { 
+    background-color: #d15616; 
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(232, 98, 26, 0.3);
+}
+
+.result-box { 
+    display: none; 
+    margin-top: 30px; 
+    padding: 25px; 
+    border-radius: 18px; 
+    background: rgba(232, 98, 26, 0.05); 
+    border: 1px solid rgba(232, 98, 26, 0.2);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logistik-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    background: rgba(232, 98, 26, 0.2);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.label-custom { 
+    color: var(--accent); 
+    font-weight: 600; 
+    font-size: 0.85rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+
+hr { border-color: rgba(255,255,255,0.1); }

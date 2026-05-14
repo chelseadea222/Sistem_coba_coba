@@ -37,38 +37,8 @@ $result_ulasan = mysqli_query($koneksi, "SELECT * FROM ulasan_wisata ORDER BY ta
     <title>Admin Dashboard - BromoTrack</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        :root { --primary-dark: #2c3e50; --accent: #E8621A; --bg-light: #f4f7f6; }
-        body { background-color: var(--bg-light); font-family: 'Segoe UI', sans-serif; margin: 0; }
-        
-        nav { background: #2c3e50; padding: 12px 0; position: sticky; top: 0; z-index: 1050; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
-        .nav-container { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 25px; }
-        .logo { color: #fff; font-size: 1.4rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: #e67e22; }
-        
-        .logout-btn { background-color: #ff0000 !important; color: #000000 !important; font-weight: bold !important; padding: 8px 16px !important; border-radius: 4px !important; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border: none !important; }
-
-        .main-content { max-width: 1200px; margin: auto; padding: 30px 20px; }
-        .card-stat { border: none; border-radius: 12px; color: white; position: relative; overflow: hidden; }
-        .stat-icon { font-size: 3rem; opacity: 0.2; position: absolute; right: 15px; bottom: 5px; }
-        
-        .scroll-container { max-height: 400px; overflow-y: auto; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
-        .card-table { border: none; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 40px; background: white; }
-        .card-header { background: white !important; border-bottom: 1px solid #edf2f7; padding: 18px 25px; font-weight: 700; position: sticky; top: 0; z-index: 10; }
-        
-        .table thead th { background: #f8fafc; color: #718096; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; position: sticky; top: 0; }
-        .star-rating { color: #f6ad55; }
-
-        .btn-print { font-size: 0.8rem; font-weight: 600; padding: 4px 12px; }
-
-        @media print {
-            nav, .logout-btn, .btn-print, .btn-sm, .card-stat, canvas { display: none !important; }
-            .main-content { padding: 0; margin: 0; width: 100%; }
-            .card-table { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
-            .scroll-container { max-height: none !important; overflow: visible !important; }
-        }
-    </style>
 </head>
 <body>
 

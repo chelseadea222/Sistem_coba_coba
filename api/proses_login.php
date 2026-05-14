@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['role']    = $role;
 
                 // Tentukan target URL
-                $target_url = ($role === 'admin') ? 'tiket_harian.php' : 'landingpage.php';
+                $target_url = ($role === 'admin') ? 'dashboard_admin.php' : 'landingpage.php';
                 
                 // Pastikan session tersimpan
                 session_write_close();

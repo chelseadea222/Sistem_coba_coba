@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/koneksi.php'; 
 
 // Data Destinasi Bromo Lengkap
 $wisata_bromo = [
@@ -61,142 +61,7 @@ if (isset($_POST['bayar_tiket'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root { 
-            --accent: #E8621A; 
-            --glass-dark: rgba(20, 20, 20, 0.7);
-        }
-
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=1200');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white; 
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 40px 0;
-        }
-
-        .glass-card { 
-            background: var(--glass-dark); 
-            backdrop-filter: blur(15px); 
-            border-radius: 24px; 
-            padding: 35px; 
-            border: 1px solid rgba(255,255,255,0.15); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
-        .label-custom { 
-            color: var(--accent); 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .input-custom {
-            background: rgba(255,255,255,0.1) !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
-            color: white !important;
-            border-radius: 12px;
-            padding: 12px 18px;
-        }
-
-        /* Perbaikan visibilitas teks dropdown */
-        .input-custom option {
-            color: #333; 
-            background-color: #fff; 
-        }
-
-        .input-custom:focus {
-            border-color: var(--accent) !important;
-            box-shadow: 0 0 10px rgba(232, 98, 26, 0.3) !important;
-        }
-
-        .scroll-list { 
-            max-height: 250px; 
-            overflow-y: auto; 
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 15px; 
-            padding: 10px; 
-        }
-        
-        .check-item { 
-            display: flex; 
-            align-items: center; 
-            padding: 12px; 
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-        }
-        .check-item:hover { background: rgba(232, 98, 26, 0.1); }
-        .check-item input { accent-color: var(--accent); width: 18px; height: 18px; }
-        
-        .destinasi-label { 
-            flex: 1; 
-            display: flex; 
-            justify-content: space-between; 
-            margin-left: 12px;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .price-text { color: var(--accent); font-weight: 700; }
-
-        .btn-pay { 
-            background-color: var(--accent); 
-            color: white; 
-            border: none; 
-            font-weight: 700; 
-            padding: 15px; 
-            border-radius: 12px;
-            transition: 0.3s;
-            text-transform: uppercase;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .btn-pay:hover { background-color: #d15616; transform: translateY(-2px); }
-
-        .total-box {
-            background: rgba(232, 98, 26, 0.1);
-            border: 1px dashed var(--accent);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .modal-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.85); 
-            display: <?= $show_payment ? 'flex' : 'none' ?>; 
-            justify-content: center; align-items: center; 
-            z-index: 1000; padding: 20px;
-        }
-        .pay-card { 
-            background: #1a1a1a; 
-            width: 100%; max-width: 450px; 
-            border-radius: 24px; border: 1px solid var(--accent);
-            overflow: hidden; 
-            animation: zoomIn 0.3s ease-out;
-        }
-        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        
-        .pay-header { background: var(--accent); padding: 20px; text-align: center; }
-        .pay-body { padding: 35px; text-align: center; }
-        .amount-display { font-size: 2.5rem; font-weight: 800; color: white; margin: 10px 0; }
-        .bank-details { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; text-align: left; margin: 20px 0; }
-        .btn-done { display: block; background: white; color: black; padding: 15px; text-decoration: none; border-radius: 12px; font-weight: 800; margin-top: 20px; text-align: center; }
-        
-        .scroll-list::-webkit-scrollbar { width: 6px; }
-        .scroll-list::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
-    </style>
+    <link rel="stylesheet" href="../css/beli_tiket.css">
 </head>
 <body>
 
@@ -264,7 +129,7 @@ if (isset($_POST['bayar_tiket'])) {
     </div>
 </div>
 
-<div class="modal-overlay">
+<div class="modal-overlay" style="display: <?= $show_payment ? 'flex' : 'none' ?>;">
     <div class="pay-card">
         <div class="pay-header">
             <h4 class="fw-bold mb-0 text-white">Selesaikan Pembayaran</h4>

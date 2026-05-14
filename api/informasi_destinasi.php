@@ -1,7 +1,6 @@
 <?php
 /**
- * File: index.php / landing_page.php
- * Deskripsi: Halaman Landing Page (Versi Tanpa Kuliner)
+ * File: index.php
  */
 
 $wisata_bromo = [
@@ -25,75 +24,7 @@ $wisata_bromo = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Wisata Bromo - Eksplorasi Wisata Ikonik</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; overflow-x: hidden; scroll-behavior: smooth; }
-        nav { background: #2c3e50; padding: 15px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .nav-container { max-width: 1100px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: #e67e22; }
-        .nav-links a { color: #ecf0f1; text-decoration: none; margin-left: 20px; font-size: 0.9rem; transition: 0.3s; }
-        .nav-links a:hover { color: #e67e22; }
-
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?q=80&w=1200') no-repeat center center/cover;
-            height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; padding: 0 20px;
-        }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.1rem; max-width: 600px; margin-bottom: 25px; }
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
-        .btn-main { padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .btn-blue { background: #3498db; color: white; }
-        .btn-blue:hover { background: #2980b9; transform: translateY(-3px); }
-        .btn-orange { background: #e67e22; color: white; }
-        .btn-orange:hover { background: #d35400; transform: translateY(-3px); }
-
-        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
-        .section-title { text-align: center; margin-bottom: 30px; }
-        .section-title h2 { font-size: 2rem; margin-bottom: 5px; color: #2c3e50; }
-        .section-title hr { width: 60px; border: 2px solid #3498db; margin: 10px auto; border-radius: 5px; }
-
-        .scroll-wrapper {
-            display: flex;
-            overflow-x: auto;
-            gap: 20px;
-            padding: 20px 5px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .scroll-wrapper::-webkit-scrollbar { height: 8px; }
-        .scroll-wrapper::-webkit-scrollbar-track { background: #eee; border-radius: 10px; }
-        .scroll-wrapper::-webkit-scrollbar-thumb { background: #3498db; border-radius: 10px; }
-
-        .card { 
-            min-width: 300px; 
-            background: white; 
-            border-radius: 15px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
-            flex-shrink: 0; 
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: 0.3s;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
-        .card-img { height: 180px; background-size: cover; background-position: center; position: relative; }
-        .card-header { background: #3498db; color: white; padding: 15px 20px; }
-        .card-header h3 { margin: 0; font-size: 1.25rem; }
-        .card-header span { font-size: 0.85rem; opacity: 0.9; display: flex; align-items: center; gap: 5px; margin-top: 3px; }
-        .card-body { padding: 20px; color: #666; font-size: 0.95rem; flex-grow: 1; line-height: 1.6; }
-        .card-footer { padding: 15px 20px; border-top: 1px solid #f1f1f1; text-align: right; background: #fafafa; }
-        .btn-sm { color: #3498db; text-decoration: none; font-weight: bold; font-size: 0.85rem; transition: 0.2s; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 60px; }
-        .feature-item { background: #fff; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #f0f0f0; transition: 0.3s; }
-        .feature-item i { font-size: 2.5rem; color: #e67e22; margin-bottom: 15px; display: block; }
-        .feature-item h3 { color: #2c3e50; margin-bottom: 12px; }
-        .feature-item p { color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.95rem; }
-
-        footer { text-align: center; padding: 40px 20px; background: #2c3e50; color: white; margin-top: 60px; }
-    </style>
+    <link rel="stylesheet" href="../css/destinasi.css">
 </head>
 <body>
 
@@ -101,7 +32,7 @@ $wisata_bromo = [
         <div class="nav-container">
             <a href="index.php" class="logo">Bromo<span>E-Wisata</span></a>
             <div class="nav-links">
-                <a href="#destinasi"><i class="bi bi-map"></i> Destinasi</a>
+                <a href="informasi_destinasi"><i class="bi bi-map"></i> Destinasi</a>
                 <a href="rating.php"><i class="bi bi-star"></i> Ulasan</a>
                 <a href="laporan_keluhan.php"><i class="bi bi-chat-dots"></i> Bantuan</a>
             </div>
@@ -112,7 +43,7 @@ $wisata_bromo = [
         <h1>Jelajahi 11 Wisata Ikonik Bromo</h1>
         <p>Nikmati kemudahan eksplorasi keajaiban alam Taman Nasional Bromo Tengger Semeru dalam satu layanan terintegrasi.</p>
         <div class="hero-buttons">
-            <a href="Beli_tiket.php" class="btn-main btn-blue"><i class="bi bi-ticket-perforated"></i> Pesan Tiket Wisata</a>
+            <a href="beli_tiket.php" class="btn-main btn-blue"><i class="bi bi-ticket-perforated"></i> Pesan Tiket Wisata</a>
             <a href="booking.php" class="btn-main btn-orange"><i class="bi bi-car-front"></i> Booking Penginapan</a>
             <a href="tiket.php" class="btn-main btn-blue"><i class="bi bi-truck"></i> Cek Estimasi Perjalanan</a>
         </div>

@@ -10,7 +10,7 @@ require_once __DIR__ . '/proses_login.php';
 
 if (isset($_SESSION['role'])) {
     if (strtolower($_SESSION['role']) === 'admin') {
-        header('Location: tiket_harian.php');
+        header('Location: dashboard_admin.php');
         exit;
     } else {
         header('Location: landingpage.php');
